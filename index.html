@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Water Dash</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+
+    <!-- 1. START -->
+    <section class="screen start" data-screen="start">
+      <div class="start__top">
+        <div class="placeholder partner">[Partner mark]</div>
+        <button class="btn btn--small" id="soundBtn" aria-pressed="true">Sound: on</button>
+      </div>
+
+      <div class="start__center">
+        <h1 class="title">WATER DASH</h1>
+        <p class="tagline">Run, don't spill, bring water home.</p>
+        <div class="stack">
+          <button class="btn btn--primary" id="playBtn">PLAY</button>
+          <button class="btn" id="howBtn">HOW TO PLAY</button>
+        </div>
+      </div>
+
+      <div class="start__scene" aria-hidden="true">
+        <span class="deco deco--runner"></span>
+        <span class="deco deco--rock"></span>
+        <span class="deco deco--puddle"></span>
+      </div>
+      <div class="start__footer">
+        <span>Best: <span id="bestStart">000</span> m</span>
+        <span>Inspired by charity: water · <a href="https://www.charitywater.org" target="_blank" rel="noopener">charitywater.org</a></span>
+      </div>
+    </section>
+
+    <!-- 2. GAMEPLAY -->
+    <section class="screen game" data-screen="game" hidden>
+      <div class="hud">
+        <button class="btn btn--icon" id="pauseBtn" aria-label="Pause">II</button>
+        <div class="meter">
+          <span class="meter__label" id="waterLabel">WATER</span>
+          <div class="bar" role="progressbar" aria-labelledby="waterLabel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="waterBar">
+            <span class="bar__fill bar__fill--water" id="waterFill"></span>
+          </div>
+        </div>
+        <div class="meter meter--wide">
+          <span class="meter__label" id="distLabel">DISTANCE TO VILLAGE</span>
+          <div class="bar" role="progressbar" aria-labelledby="distLabel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="distBar">
+            <span class="bar__fill" id="distFill"></span>
+          </div>
+        </div>
+        <div class="score" id="score" aria-label="Score">[0000]</div>
+      </div>
+
+      <div class="stage" id="stage">
+        <canvas id="canvas" aria-label="Water Dash game area"></canvas>
+        <p class="stage__hint">Tap / SPACE = jump · Hit obstacle = water spills</p>
+        <div class="overlay" id="pauseOverlay" hidden>
+          <p>PAUSED</p>
+          <button class="btn btn--primary" id="resumeBtn">RESUME</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. RESULTS -->
+    <section class="screen results" data-screen="results" hidden>
+      <h2 class="title title--small" id="resultTitle">YOU REACHED THE VILLAGE</h2>
+      <div class="cards">
+        <div class="card"><span class="card__label">WATER DELIVERED</span><span class="card__value" id="resWater">0 L</span></div>
+        <div class="card"><span class="card__label">PEOPLE HELPED</span><span class="card__value" id="resPeople">0</span></div>
+        <div class="card"><span class="card__label">BEST</span><span class="card__value" id="resBest">0 L</span></div>
+      </div>
+      <!-- TODO: replace with real facts, each verified against charitywater.org -->
+      <div class="placeholder fact" id="factBox">Did you know? [Verified fact + source from charitywater.org]</div>
+      <div class="stack stack--row">
+        <button class="btn btn--primary" id="againBtn">PLAY AGAIN</button>
+        <button class="btn" id="shareBtn">SHARE RESULT</button>
+      </div>
+      <a class="btn btn--link" href="https://www.charitywater.org" target="_blank" rel="noopener">LEARN MORE / DONATE → charitywater.org</a>
+    </section>
+
+  </main>
+
+  <dialog id="howDialog">
+    <h2>How to play</h2>
+    <p>Carry the water to the village. Tap the screen or press SPACE to jump over rocks, puddles and animals.</p>
+    <p>Every hit spills water. Run out and you don't make it.</p>
+    <button class="btn btn--primary" id="closeHow">GOT IT</button>
+  </dialog>
+
+  <script src="game.js" defer></script>
+</body>
+</html>
